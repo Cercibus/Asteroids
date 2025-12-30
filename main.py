@@ -12,9 +12,9 @@ def main():
 	pygame.init()
 	clock = pygame.time.Clock()
 	dt = 0
-	updateables = pygame.sprite.Group()
-	drawables = pygame.sprite.Group()
-	Player.containers = (updateables, drawables)
+	updateable = pygame.sprite.Group()
+	drawable = pygame.sprite.Group()
+	Player.containers = (updateable, drawable)
 	player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, PLAYER_RADIUS)
 	while True:
 		for event in pygame.event.get():
@@ -22,10 +22,10 @@ def main():
        				 return
 		log_state()
 		screen.fill("black")
-		for updateable in updateables:
-			updateable.update(dt)
-		for drawable in drawables:
-			drawable.draw(screen)
+		for updateable_thing in updateable:
+			updateable_thing.update(dt)
+		for drawable_thing in drawable:
+			drawable_thing.draw(screen)
 		pygame.display.flip()
 		clock.tick(60)
 		dt = clock.tick(60) / 1000
